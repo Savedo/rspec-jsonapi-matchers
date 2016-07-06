@@ -17,7 +17,7 @@ module RSpec
 
       JSONAPI_SCHEMA_PATH = File.join(ROOT_PATH, "json_schemas/jsonapi.json").freeze
 
-      # Verifies that response contains error in JSON API format with given
+      # Verify that response contains error in JSON API format with given
       # code and title.
       # For more info please check: http://jsonapi.org/format/1.0/#error-objects
       #
@@ -30,7 +30,7 @@ module RSpec
         HaveJsonApiErrorMatcher.new(expected_properties)
       end
 
-      # Verifies that response contains resource with given type, id and attributes
+      # Verify that response contains resource with given type, id and attributes
       # in JSON API format.
       # For more info please check: http://jsonapi.org/format/#document-resource-objects
       #
@@ -41,7 +41,7 @@ module RSpec
         HaveJsonApiResourceMatcher.new(attrs)
       end
 
-      # Verifies that response contains JSON API resources with parameters.
+      # Verify that response contains JSON API resources with parameters.
       #
       # @example
       #   expect(response).to have_jsonapi_resources([
