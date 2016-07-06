@@ -26,6 +26,8 @@ module RSpec
       #     code: "invalid_schema",
       #     title: "attributes are missing"
       #   )
+      #
+      # @param expected_properties [Hash]
       def have_jsonapi_error(expected_properties)
         HaveJsonApiErrorMatcher.new(expected_properties)
       end
@@ -37,6 +39,7 @@ module RSpec
       # @example
       #   expect(response).to have_jsonapi_error("customers", 113", first_name: "John")
       #
+      # @param attrs [Hash]
       def have_jsonapi_resource(attrs = {})
         HaveJsonApiResourceMatcher.new(attrs)
       end
@@ -57,6 +60,7 @@ module RSpec
       #       "name" => "Felix"
       #     }
       #   ])
+      # @param array_of_expected_attrs [Array<Hash>]
       def have_jsonapi_resources(array_of_expected_attrs)
         HaveJsonApiResourcesMatcher.new(array_of_expected_attrs)
       end
