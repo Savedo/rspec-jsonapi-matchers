@@ -1,36 +1,55 @@
-# Rspec::Jsonapi::Matchers
+# RSpec JSON API matchers
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rspec/jsonapi/matchers`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
-
-## Installation
+# Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'rspec-jsonapi-matchers'
+gem "rspec-jsonapi-matchers", github: "Savedo/rspec-jsonapi-matchers"
 ```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install rspec-jsonapi-matchers
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+describe YourController do
+  describe "#index" do
+    it "returns error" do
+      get :index
+      expect(response).to have_jsonapi_error("INVALID")
+    end
+  end
+end
+```
 
-## Development
+## Matchers
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake rspec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+have_jsonapi_error:
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```ruby
+expect(response).to have_jsonapi_error(
+  code: "invalid_schema",
+  title: "attributes are missing"
+)
+```
 
-## Contributing
+have_jsonapi_resource:
+```ruby
+expect(response).to have_jsonapi_error("customers", 113", first_name: "John")
+```
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rspec-jsonapi-matchers.
-
+have_jsonapi_resources:
+```ruby
+expect(response).to have_jsonapi_resources([
+  {
+    "id" => "2",
+    "type" => "dogs",
+    "name" => "Snoopy",
+    "owner" => "Charlie"
+  },
+  {
+    "id" => "13",
+    "type" => "cats",
+    "name" => "Felix"
+  }
+])
+```

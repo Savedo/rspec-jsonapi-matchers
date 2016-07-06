@@ -1,2 +1,4 @@
-$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'rspec/jsonapi/matchers'
+$LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
+
+require "pry"
+require "rspec/jsonapi/matchers"
