@@ -5,13 +5,17 @@
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "rspec-jsonapi-matchers", github: "Savedo/rspec-jsonapi-matchers"
+gem "rspec-jsonapi-matchers", git: "git@github.com:Savedo/rspec-jsonapi-matchers.git", tag: "v0.1.0"
 ```
 
 ## Usage
 
 ```ruby
+require "rspec/jsonapi/matchers"
+
 describe YourController do
+  include RSpec::JsonApi::Matchers
+
   describe "#index" do
     it "returns error" do
       get :index
