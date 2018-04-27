@@ -40,10 +40,23 @@ module RSpec
           raise(ExpectationFailure , "Response contains malformed JSON")
         end
 
+        private def schema
+          @schema ||= begin
+            parsed_schema = JSON.parse(File.read(File.join(__dir__,"/jsonapi.json")))
+            JsonSchema.parse!(parsed_schema).tap do |s|
+              s.expand_references!
+            end
+          end
+        rescue JSON::ParserError => error
+          raise ExpectationFailure, "JSON Schema is not valid JSON. #{error&.message}"
+        rescue JsonSchema::SchemaError => error
+          raise ExpectationFailure, "JSON Schema is valid JSON, but is not a valid JSON Schema. #{error&.message}"
+        end
+
         private def validate_schema!
-          JSON::Validator.validate!(JSONAPI_SCHEMA_PATH, parsed_response)
-        rescue JSON::Schema::ValidationError => err
-          msg = "Response does not match JSON API schema. #{err.message}"
+          schema.validate!(parsed_response)
+        rescue JsonSchema::Error => error
+          msg = "Response does not match JSON API schema. #{error.message}"
           raise(ExpectationFailure, msg)
         end
 

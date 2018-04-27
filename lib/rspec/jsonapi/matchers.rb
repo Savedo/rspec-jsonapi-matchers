@@ -1,5 +1,6 @@
-require "active_support/all"
-require "json-schema"
+require "active_support"
+require "active_support/core_ext/hash"
+require "json_schema"
 
 require "rspec/jsonapi/matchers/version"
 require "rspec/jsonapi/matchers/resource"
@@ -12,10 +13,6 @@ module RSpec
   module JsonApi
     module Matchers
       class ExpectationFailure < ::StandardError; end
-
-      ROOT_PATH = File.expand_path("../../../../", __FILE__).freeze
-
-      JSONAPI_SCHEMA_PATH = File.join(ROOT_PATH, "json_schemas/jsonapi.json").freeze
 
       # Verify that response contains error in JSON API format with given
       # code and title.
