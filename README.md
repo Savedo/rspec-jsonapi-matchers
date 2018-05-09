@@ -5,7 +5,7 @@
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "rspec-jsonapi-matchers", github: "Savedo/rspec-jsonapi-matchers", , tag: "v0.2.0"
+gem "rspec-jsonapi-matchers", github: "Savedo/rspec-jsonapi-matchers", tag: "v0.2.0"
 ```
 
 ## Usage
