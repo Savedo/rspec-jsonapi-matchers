@@ -27,7 +27,7 @@ end
 
 ## Matchers
 
-have_jsonapi_error:
+- **have_jsonapi_error**:
 
 ```ruby
 expect(response).to have_jsonapi_error(
@@ -36,12 +36,12 @@ expect(response).to have_jsonapi_error(
 )
 ```
 
-have_jsonapi_resource:
+- **have_jsonapi_resource**:
 ```ruby
-expect(response).to have_jsonapi_error("customers", 113", first_name: "John")
+expect(response).to have_jsonapi_resource("customers", 113", first_name: "John")
 ```
 
-have_jsonapi_resources:
+- **have_jsonapi_resources**:
 ```ruby
 expect(response).to have_jsonapi_resources([
   {
